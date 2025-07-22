@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -23,10 +22,18 @@ model Camera {
   Incident Incident[]
 }
 
+ enum IncidentType {
+  UNAUTHORISED_ACCESS
+  GUN_THREAT
+  FACE_RECOGNISED
+  TRAFFIC_CONGESTION
+}
+
 model Incident {
-  id           String   @id @default(uuid())
+  id           String       @id @default(uuid())
   cameraId     String
-  type         String
+  type         IncidentType
+  date         DateTime
   tsStart      DateTime
   tsEnd        DateTime
   thumbnailUrl String
