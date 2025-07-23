@@ -1,16 +1,21 @@
 import { prisma, IncidentType } from './config/prismaClient';
 
 /*  Generates and return random startTime(tsStart) */
-const randomDateInPastDays = (days: number) => {
-    const now = new Date();
-    const past = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
-    return new Date(
-        past.getTime() + Math.random() * (now.getTime() - past.getTime())
-    );
+const randomTimeToday = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const randomMs = Math.floor(Math.random() * 24 * 60 * 60 * 1000);
+    return new Date(today.getTime() + randomMs);
 };
+
+const todayDate = new Date();
+todayDate.setHours(0, 0, 0, 0);
 
 /* seed main function */
 async function main() {
+    /*Delete data before seeding */
+    await prisma.incident.deleteMany({});
+    await prisma.camera.deleteMany({});
     /* dummy camera data*/
     const cameraData = [
         { name: 'Camera 01', location: 'Shop Floor 1' },
@@ -22,11 +27,11 @@ async function main() {
     const cameras = await prisma.camera.findMany();
 
     const images = [
-        './public/thumbnails/Thumbnail-01.jpg',
-        './public/thumbnails/Thumbnail-02.jpg',
-        './public/thumbnails/Thumbnail-03.jpg',
-        './public/thumbnails/Thumbnail-04.jpg',
-        './public/thumbnails/Thumbnail-05.jpg',
+        '/thumbnails/Thumbnail-01.jpg',
+        '/thumbnails/Thumbnail-02.jpg',
+        '/thumbnails/Thumbnail-03.jpg',
+        '/thumbnails/Thumbnail-04.jpg',
+        '/thumbnails/Thumbnail-05.jpg',
     ];
 
     const incidentTypes = [
@@ -42,24 +47,19 @@ async function main() {
         const type =
             incidentTypes[Math.floor(Math.random() * incidentTypes.length)];
         const thumbnailUrl = images[Math.floor(Math.random() * images.length)];
-        const tsStart = randomDateInPastDays(1);
+        const tsStart = randomTimeToday();
         const tsEnd = new Date(
             tsStart.getTime() + (5 + Math.floor(Math.random() * 20)) * 60 * 1000
-        );
-        const date = new Date(
-            tsStart.getFullYear(),
-            tsStart.getMonth(),
-            tsStart.getDate()
         );
 
         return {
             cameraId: camera.id,
             type,
-            date,
+            date: todayDate,
             tsStart,
             tsEnd,
             thumbnailUrl,
-            resolved: i % 5 === 0,
+            resolved: i % 3 === 0,
         };
     });
 
