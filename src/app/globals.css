@@ -117,6 +117,7 @@
   /* === FONTS === */
   --font-sans: var(--font-inter);
   --font-alt: var(--font-jakarta);
+  --font-mono: var(--font-ibmMono);
 
   /* === UTILITY COLORS FOR TAILWIND === */
   /* Orange variants */
