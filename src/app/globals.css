@@ -159,6 +159,11 @@
   --color-success: var(--color-incident-resolved);
   --color-info: var(--color-incident-info);
 
+  /* CAMERA SPECIFIC */
+  --color-camera-active: var(--color-camera-active);
+  --color-camera-inactive: var(--color-camera-inactive);
+  --color-camera-alert: var(--color-camera-alert);
+
   /* === HEX COLORS AS TAILWIND COLORS === */
   --color-gold: var(--color-hex-ffcc00);
   --color-dark-gray: var(--color-hex-131313);
@@ -173,6 +178,8 @@
 
   /* OVERLAYS */
   --color-overlay-light: var(--color-overlay-light);
+  --color-overlay-medium: var(--color-overlay-medium);
+  --color-overlay-heavy: var(--color-overlay-heavy);
 }
 
 body {
