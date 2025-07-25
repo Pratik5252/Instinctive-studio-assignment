@@ -1,22 +1,22 @@
-// components/Ruler24Hr.tsx
+
 
 export default function TimeRuler() {
-  const hourWidth = 72; // ⬅️ Changed from 60 to 72px
+  const hourWidth = 72; 
   const totalHours = 24;
   const totalWidth = hourWidth * totalHours;
   const height = 28;
 
   const majorTickHeight = 12;
   const minorTickHeight = 6;
-  const tickInterval = 5; // minutes
-  const ticksPerHour = 60 / tickInterval; // = 12
+  const tickInterval = 5;
+  const ticksPerHour = 60 / tickInterval;
 
   const ticks = [];
 
   for (let hour = 0; hour < totalHours; hour++) {
     const hourX = hour * hourWidth;
 
-    // Add major hour tick
+    
     ticks.push(
       <line
         key={`hour-${hour}`}
@@ -41,7 +41,7 @@ export default function TimeRuler() {
       </text>
     );
 
-    // Add 5-minute minor ticks
+   
     for (let i = 1; i < ticksPerHour; i++) {
       const x = hourX + (i * hourWidth) / ticksPerHour;
       ticks.push(
