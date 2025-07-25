@@ -1,6 +1,6 @@
 import IncidentList from "@/components/incidents/Incidents";
 import Navbar from "@/components/Navbar";
-import { getIncidents } from "@/lib/api";
+import { getCameras, getIncidents } from "@/lib/api";
 import {
   dehydrate,
   HydrationBoundary,
@@ -13,6 +13,12 @@ export default async function Home() {
   await queryClient.prefetchQuery({
     queryKey: ["incidents"],
     queryFn: getIncidents,
+  });
+
+  // camera
+  await queryClient.prefetchQuery({
+    queryKey: ["cameras"],
+    queryFn: getCameras,
   });
 
   return (
