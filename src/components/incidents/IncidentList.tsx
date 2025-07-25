@@ -1,7 +1,6 @@
 "use client";
 
 import { IncidentWithCamera, resolveIncident } from "@/lib/api";
-import { IncidentType } from "@prisma/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
