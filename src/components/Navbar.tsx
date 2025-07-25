@@ -14,7 +14,7 @@ const Navbar = () => {
     { icon: "mdi:users", name: "Users" },
   ];
   return (
-    <div className="relative w-full flex px-6 pt-4 pb-3 font-alt justify-between items-center border-b border-white/15">
+    <div className="relative w-full flex px-6 pt-3 pb-3 font-alt justify-between items-center border-b border-white/15">
       {/* //center this */}
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[725px] h-[108px] rounded-full bg-[rgba(208,167,4,0.35)] blur-[100px] -z-10"></div>
       <div className="flex gap-2 items-center">
