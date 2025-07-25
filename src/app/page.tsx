@@ -1,4 +1,4 @@
-import IncidentList from "@/components/incidents/Incidents";
+import IncidentList from "@/components/incidents/IncidentsSection";
 import Navbar from "@/components/Navbar";
 import { getCameras, getIncidents } from "@/lib/api";
 import {
