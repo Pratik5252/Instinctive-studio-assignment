@@ -59,7 +59,7 @@ const TimeLine = ({
     };
   });
 
-  const getPositionAndWidth = (startISO, endISO) => {
+  const getPositionAndWidth = (startISO: Date, endISO: Date) => {
     const start = new Date(startISO);
     const end = new Date(endISO);
 
@@ -68,7 +68,7 @@ const TimeLine = ({
     const endSeconds =
       end.getHours() * 3600 + end.getMinutes() * 60 + end.getSeconds();
 
-    const pxPerSecond = 72 / 3600; // 1 hour = 72px
+    const pxPerSecond = 72 / 3600;
     const left = startSeconds * pxPerSecond;
     const width = (endSeconds - startSeconds) * pxPerSecond;
 
@@ -159,7 +159,7 @@ const TimeLine = ({
                   key={camera.id}
                   className="relative"
                   style={{
-                    height: "48px", // row height
+                    height: "48px", 
                   }}
                 >
                   {camera.incidents?.map((incident) => {
@@ -197,7 +197,6 @@ const TimeLine = ({
                 </div>
               ))}
             </div>
-            {/* <p>Hello</p> */}
           </animated.div>
         </div>
       </div>
