@@ -13,6 +13,7 @@ import {
   CheckCheck,
 } from "lucide-react";
 import { Camera } from "@prisma/client";
+import TimeLine from "../timeline/TimeLineSection";
 
 const Incidents = () => {
   const { data }: { data: IncidentWithCamera[] | undefined } = useQuery({
@@ -72,7 +73,9 @@ const Incidents = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-full border"></div>
+      <div className="w-full h-full rounded-md">
+        <TimeLine camera={camera} incident={data} />
+      </div>
     </div>
   );
 };
