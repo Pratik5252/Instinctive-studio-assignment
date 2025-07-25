@@ -1,16 +1,10 @@
 "use client";
 
-import { getIncidents, IncidentWithCamera } from "@/lib/api";
-import { Incident } from "@prisma/client";
-import {
-  useQuery,
-  QueryClient,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { getCameras, getIncidents, IncidentWithCamera } from "@/lib/api";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import IncidentList from "./IncidentList";
-import IncidentPlayer from "../IncidentPlayer";
+import IncidentPlayer from "./IncidentPlayer";
 import {
   TriangleAlert,
   DoorOpen,
@@ -18,6 +12,7 @@ import {
   UserSearch,
   CheckCheck,
 } from "lucide-react";
+import { Camera } from "@prisma/client";
 
 const Incidents = () => {
   const { data }: { data: IncidentWithCamera[] | undefined } = useQuery({
@@ -25,12 +20,16 @@ const Incidents = () => {
     queryFn: () => getIncidents(),
   });
 
-  console.log(data[0]);
+  const { data: camera } = useQuery<Camera[] | undefined>({
+    queryKey: ["cameras"],
+    queryFn: () => getCameras(),
+  });
+
   return (
     <div className="flex flex-col w-full h-full p-6 gap-6">
       <div className="flex w-full h-[55vh] gap-6">
         <div className="flex w-[55vw]">
-          <IncidentPlayer />
+          <IncidentPlayer camera={camera} />
         </div>
 
         <div className="bg-card flex flex-col grow rounded-md overflow-hidden">
